@@ -1,12 +1,12 @@
 #include <stdio.h>
 #include<stdlib.h>
-#define no_of_packets 15
-#define window_size 5
 int main()
 {
 int p,i=1,a,w,nac,ack;
-a=no_of_packets;
-w=window_size;
+printf("enter the no of packets");
+scanf("%d",&a);
+printf("enter the window size");
+scanf("%d",&w);
 printf("Transmitting begins...! No of Packets : %d\n",a);
 while(i<=a)
 {
