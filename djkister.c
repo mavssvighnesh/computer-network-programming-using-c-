@@ -1,47 +1,98 @@
-#include<limits.h>
 #include<stdio.h>
-#include<stdbool.h>
-// Number of vertices in the graph
-#define V 9
-int minDistance(int dist[], bool sptSet[])
-{
-	int min=INT_MAX,min_index;
-	for(int v=0;v<V;v++)
-		if(sptSet[v]==false && dist[v]<=min)
-			min=dist[v],min_index=v;
-	return min_index;
-}
-void printSolution(int dist[])
-{
-	printf("Vertex \t\t Distance from Source\n");
-	for(int i=0;i<V;i++)
-		printf("%d \t\t %d\n",i,dist[i]);
-}
-void dijkstra(int graph[V][V],int src)
-{
-	int dist[V];
-	bool sptSet[V];
-	for(int i=0;i<V;i++)
-		dist[i]=INT_MAX,sptSet[i]=false;
-	dist[src]=0;
-	for(int count=0;count<V-1;count++) 
-	{
-		int u=minDistance(dist,sptSet);
-		sptSet[u]=true;
-		for(int v=0;v<V;v++)
-			if(!sptSet[v] && graph[u][v] && dist[u]!=INT_MAX
-				&& dist[u]+graph[u][v]<dist[v])
-				dist[v]=dist[u]+graph[u][v];
-	}
-	printSolution(dist);
-}
+#include<conio.h>
+#include<stdlib.h>
+
 int main()
-{
-	int graph[V][V]={{0,4,0,0,0,0,0,8,0},{4,0,8,0,0,0,0,11,0},
-					{0,8,0,7,0,4,0,0,2},{0,0,7,0,9,14,0,0,0},
-					{0,0,0,9,0,10,0,0,0},{0,0,4,14,10,0,2,0,0},
-					{0,0,0,0,0,2,0,1,6},{8,11,0,0,0,0,1,0,7},
-					{0,0,2,0,0,0,6,7,0}};
-	dijkstra(graph,0);
-	return 0;
+{ 
+    int dd[5][2];
+    int op,d3,d4,d1,d2,i,j;
+    for(i=0;i<5;i++)
+    {   if(i==0)
+            printf("enter values of a \n");
+        else if (i==1 )
+            printf("enter values for b\n");
+        else if(i==2)
+            printf("enter values for c \n");
+        else if(i==3)
+            printf("enter values for d \n");
+        else 
+            printf("enter values for e\n");
+        for(j=0;j<2;j++)
+        {
+            printf("enter distance to node %d \t",j+1);
+            scanf("%d",&dd[i][j]);
+
+        }
+    }
+    for(i=0;i<5;i++)
+    {   for(j=0;j<2;j++)
+        {
+            
+            printf("%d \t ",dd[i][j]);
+
+        }
+        printf("\n");
+    }
+   
+    while(1)
+    {
+        printf("select one option in the below \n ");
+        printf("----****MENU****----\n");
+        printf("1.)A->B\n 2.)A->c\n 3.)A->D \n4.)A->E\n5.)EXIT \n");
+        printf("enter ur option: \t");
+        scanf("%d",&op);
+        switch(op)
+        {
+            case(1):
+            {
+                printf("the shortest path between a->b is %d  distance \n ",dd[0][0]);
+                break;
+
+            }
+            case(2):
+            {
+               d1=dd[0][0]+dd[1][1];
+               d2=dd[0][1]+dd[3][1]+dd[4][1];
+
+                if (d1<d2)
+                {
+                    printf("\nthe shortest path between A->C is a->b->c %d \n",d1);
+                    }
+                else
+                {
+                    printf("\n the shortest path between a->c is a->d->e->c is %d\n",d2);
+                }
+                break;
+            
+
+            }
+            case(3):
+            {
+                printf("the shortest path between a->d is %d \n ",dd[0][1]);
+                break;
+
+            }
+            case(4):
+            {
+               d3=dd[0][0]+dd[1][1]+dd[2][1];
+               d4=dd[0][1]+dd[3][1];
+
+                if(d3<d4)
+                {
+                    printf("the shortest path between a->e is a->b->c->e is %d \n ",d3);
+                }
+                else 
+                {
+                    printf("the shortest path between a->e is a->d->e is %d \n",d4);
+                }
+                break;
+            }
+            case(5):
+            {
+                exit(1);
+            }
+        }
+    }
+    return(0);
 }
+
